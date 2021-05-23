@@ -15,14 +15,17 @@ public class ProgramaAcademico {
     
  String nombre;
  int creditos;
- double descuento;
- double precio;
+double precioNeto;
+ double precioFinal;
  ArrayList <Estudiante> estudiantes; 
  FormaPago forma;
+ double descuento;
+ double porcentaje;
 
-    public ProgramaAcademico(String nombre, int creditos) {
+    public ProgramaAcademico(String nombre, int creditos, double porcentaje) {
         this.nombre = nombre;
         this.creditos = creditos;
+        this.porcentaje= porcentaje;
         estudiantes= new ArrayList<>();
     }
 
@@ -42,20 +45,13 @@ public class ProgramaAcademico {
         this.creditos = creditos;
     }
 
-    public double getDescuento() {
-        return descuento;
+    public double getPrecioneto() {
+        return precioNeto;
     }
 
-    public void setDescuento(double descuento) {
-        this.descuento = this.precio*descuento;
-    }
-
-    public double getPrecio() {
-        return precio;
-    }
-
-    public void setPrecio(double precio) {
-        this.precio = this.creditos*200000;
+    public void setPrecioneto() {
+        this.precioNeto = this.creditos*200000;
+        
     }
 
     public ArrayList<Estudiante> getEstudiantes() {
@@ -65,9 +61,34 @@ public class ProgramaAcademico {
     public void setEstudiantes(Estudiante estudiante) {
         this.estudiantes.add(estudiante); 
     }
+    
+    public void setdescuento(String forma){
+        if(forma.equals("efectivo")){
+       this.forma=new FormaPago(forma,porcentaje);}
+        if(forma.equals("tarjeta")){
+       this.forma=new FormaPago(forma,0);
+        }
+       this.forma.setDescuento(precioNeto);
+       this.descuento= this.forma.getDescuento();
+    }
+    
+    public double getDescuento(){
+        return descuento;
+    }
+    
+    public void setPrecioFinal(){
+        this.precioFinal= precioNeto-descuento;
+    }
+
+    public double getPrecioFinal(){
+        return precioFinal;
+    }
 
     @Override
     public String toString() {
-        return "ProgramaAcademico{" + "nombre=" + nombre + ", creditos=" + creditos + ", descuento=" + descuento + ", precio=" + precio + ", estudiantes=" + estudiantes + '}';
+        return "ProgramaAcademico{" + "nombre=" + nombre + ", creditos=" + creditos + ", precioNeto=" + precioNeto + ", precioFinal=" + precioFinal + ", estudiantes=" + estudiantes + ", descuento=" + descuento + ", porcentaje=" + porcentaje + '}';
     }
+    
+    
+    
 }
