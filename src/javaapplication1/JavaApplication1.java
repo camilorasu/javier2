@@ -30,6 +30,24 @@ public class JavaApplication1 {
     programas.add(new ProgramaAcademico("Administración de Emplesas", 20, 0.15));
     
      boolean salir=false;
+     while(!salir){
+         
+         int menu= Integer.parseInt(JOptionPane.showInputDialog("*******Menu******** \n" + "1. Inscribir estudiante \n" + "2. Mostrar Estudiantes inscriptos en programa \n" + "0.Salir \n"));
+         switch(menu){
+             case 1: 
+                 seleccionarCarrera();
+                 break;
+             case 2:
+                 verEstudiantes();
+                 break;
+             case 0:
+                 salir=true;
+                 JOptionPane.showMessageDialog(null, "Adiós");
+                 break;
+            default:
+                JOptionPane.showMessageDialog(null, "Seleccione alguna opcion correcta");
+         }
+     }
     }
 
     private static void seleccionarCarrera() {
@@ -47,7 +65,6 @@ public class JavaApplication1 {
             break;
         case 0:
             salir=true;
-            JOptionPane.showMessageDialog(null, "Adiós");
             break;
         case 1:
             inscribirPrograma(0);
@@ -64,9 +81,6 @@ public class JavaApplication1 {
         case 5:
             inscribirPrograma(4);
             break;
-        case 6:
-            JOptionPane.showMessageDialog(null, "Gracias por usar el sistema");
-            break;    
     }
 
      }       
@@ -98,6 +112,31 @@ public class JavaApplication1 {
                  
          }
         
+    }
+
+    private static void verEstudiantes() {
+          int menu= Integer.parseInt(JOptionPane.showInputDialog("Seleccione carrera: \n 1." +programas.get(0).nombre+"\n 2."+programas.get(1).nombre+"\n 3." +programas.get(2).nombre+ "\n 4." +programas.get(3).nombre+ "\n 5." +programas.get(4).nombre));
+          
+          switch(menu){
+            case 1: 
+                JOptionPane.showMessageDialog(null, "La cantidad de estudiantes inscriptos en " + programas.get(0).nombre + " Es igual: " +programas.get(0).getEstudiantes().size());
+                        break;
+                     case 2: 
+                        JOptionPane.showMessageDialog(null, "La cantidad de estudiantes inscriptos en " + programas.get(1).nombre + " Es igual: " +programas.get(1).getEstudiantes().size());
+                        break;
+                         case 3: 
+                        JOptionPane.showMessageDialog(null, "La cantidad de estudiantes inscriptos en " + programas.get(2).nombre + " Es igual: " +programas.get(2).getEstudiantes().size());
+                        break;
+                         case 4: 
+                        JOptionPane.showMessageDialog(null, "La cantidad de estudiantes inscriptos en " + programas.get(3).nombre + " Es igual: " +programas.get(3).getEstudiantes().size());
+                        break;
+                         case 5: 
+                        JOptionPane.showMessageDialog(null, "La cantidad de estudiantes inscriptos en " + programas.get(4).nombre + " Es igual: " +programas.get(4).getEstudiantes().size());
+                        break;
+                      default:
+                           JOptionPane.showMessageDialog(null, "Seleccione alguna opcion correcta");
+                           break;
+                }
     }
     
 }
